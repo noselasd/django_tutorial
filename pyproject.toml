@@ -1,0 +1,110 @@
+#[tool.django-stubs]
+#django_settings_module = "mysite.settings.dev"
+
+
+[tool.mypy]
+python_version = "3.10"
+#plugins = ["mypy_django_plugin.main"]
+
+# Strict mode enables the following flags:
+warn_unused_configs = true
+# Warn about unused [mypy-<pattern>] config file sections. (This requires turning off incremental mode using --no-incremental.)
+
+disallow_any_generics = true
+# Disallows usage of generic types that do not specify explicit type parameters. For example, you can’t use a bare x: list.
+# Instead, you must always write something like x: list[int].
+
+disallow_subclassing_any = true
+# Reports an error whenever a class subclasses a value of type Any.
+# This may occur when the base class is imported from a module that doesn’t exist (when using --ignore-missing-imports)
+# or is ignored due to --follow-imports=skip or a # type: ignore comment on the import statement.
+#
+# Since the module is silenced, the imported class is given a type of Any.
+# By default mypy will assume that the subclass correctly inherited the base class even though that may not actually be the case.
+# This flag makes mypy raise an error instead.
+
+disallow_untyped_calls = true
+# Reports an error whenever a function with type annotations calls a function defined without annotations.
+
+disallow_untyped_defs = true
+# Reports an error whenever it encounters a function definition without type annotations.
+
+disallow_incomplete_defs = true
+# Reports an error whenever it encounters a partly annotated function definition.
+
+check_untyped_defs = true
+# Less severe than similar options – type checks the body of every function, regardless of whether it has type annotations.
+# (By default the bodies of functions without annotations are not type checked.)
+#
+# It will assume all arguments have type Any and always infer Any as the return type.
+
+disallow_untyped_decorators = true
+# Reports an error whenever a function with type annotations is decorated with a decorator without annotations.
+
+no_implicit_optional = true
+# Stop treating arguments with a None default value as having an implicit Optional type.
+#
+# For example, by default mypy will assume that the x parameter is of type Optional[int]
+# in the code snippet below since the default parameter is None:
+#
+# 	def foo(x: int = None) -> None:
+# 		print(x)
+#
+# If this flag is set, the above snippet will no longer type check: we must now explicitly indicate that the type is Optional[int]:
+#
+# 	def foo(x: Optional[int] = None) -> None:
+# 		print(x)
+
+warn_redundant_casts = true
+# Report an error whenever your code uses an unnecessary cast that can safely be removed.
+
+warn_unused_ignores = true
+# Report an error whenever your code uses a # type: ignore comment on a line that is not actually generating an error message.
+#
+# This flag, along with the --warn-redundant-casts flag, are both particularly useful when you are upgrading mypy.
+# Previously, you may have needed to add casts or # type: ignore annotations to work around bugs in mypy or missing stubs
+# for 3rd party libraries.
+#
+# These two flags let you discover cases where either workarounds are no longer necessary.
+
+warn_return_any = true
+# Warning when returning a value with type Any from a function declared with a non-Any return type.
+
+no_implicit_reexport = true
+# By default, imported values to a module are treated as exported and mypy allows other modules to import them.
+# This flag changes the behavior to not re-export unless the item is imported using from-as or is included in __all__.
+# Note this is always treated as enabled for stub files. For example:
+
+#   // This won't re-export the value
+# 	from foo import bar
+
+#   // Neither will this
+# 	from foo import bar as bang
+
+#   // This will re-export it as bar and allow other modules to import it
+# 	from foo import bar as bar
+
+# 	// This will also re-export bar
+# 	from foo import bar
+# 	__all__ = ['bar']
+
+strict_equality = true
+# By default, mypy allows always-false comparisons like 42 == 'no'.
+# Use this flag to prohibit such comparisons of non-overlapping types, and similar identity and container checks:
+
+# 	from typing import Text
+
+# 	items: list[int]
+# 	if 'some string' in items:  # Error: non-overlapping container check!
+# 		...
+
+# 	text: Text
+# 	if text != b'other bytes':  # Error: non-overlapping equality check!
+# 		...
+
+# 	assert text is not None  # OK, check against None is allowed as a special case.
+
+strict_concatenate = true
+# Make arguments prepended via Concatenate be truly positional-only (inverse: --no-strict-concatenate)
+
+# https://mypy.readthedocs.io/en/stable/command_line.html

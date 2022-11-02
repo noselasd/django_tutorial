@@ -1,0 +1,8 @@
+django ~= 4.1.2
+pytest ~= 7.2.0
+pytest_django ~= 4.5.2
+django_debug_toolbar ~= 3.7.0
+django_browser_reload ~= 1.6.0
+autopep8 ~= 2.0.0
+mypy     ~= 0.961
+django-stubs[compatible-mypy] ~= 1.12.0

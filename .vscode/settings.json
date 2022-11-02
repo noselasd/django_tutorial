@@ -1,0 +1,14 @@
+{
+    "explorer.excludeGitIgnore": true,
+    "python.formatting.provider": "autopep8",
+    "editor.formatOnSave": true,
+    "python.testing.pytestEnabled": true,
+    "python.testing.cwd": "${workspaceFolder}/mysite",
+    "python.testing.pytestArgs": [
+        "."
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.linting.mypyEnabled": true,
+    "mypy.runUsingActiveInterpreter": true,
+    "python.linting.enabled": true,
+}
