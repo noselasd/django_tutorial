@@ -1,3 +1,7 @@
+# Environments
 /venv
 __pycache__
 *.pyc
+
+# JetBrains IDEA & PyCharm settings
+.idea/
